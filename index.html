@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Avetta McKinsey Framework Metrics Tracker</title>
+  <style>
+    :root {
+      --navy: #17365d;
+      --border: #aeb8c4;
+      --stripe: #eef3f8;
+      --link: #0563c1;
+      --text: #17202a;
+      --muted: #5f6b76;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 36px;
+      color: var(--text);
+      background: #f4f6f8;
+      font-family: Aptos, "Segoe UI", Arial, sans-serif;
+      line-height: 1.4;
+    }
+
+    main {
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 30px;
+      background: #fff;
+      border: 1px solid #dfe4ea;
+      border-radius: 10px;
+      box-shadow: 0 8px 28px rgba(23, 54, 93, 0.08);
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      color: #000;
+      font-size: clamp(26px, 3vw, 40px);
+      line-height: 1.15;
+    }
+
+    .intro {
+      margin: 0 0 24px;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    a { color: var(--link); }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--border);
+    }
+
+    table {
+      width: 100%;
+      min-width: 1040px;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+
+    th,
+    td {
+      padding: 12px 13px;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+      text-align: left;
+      overflow-wrap: anywhere;
+    }
+
+    th:last-child,
+    td:last-child { border-right: 0; }
+
+    tbody tr:last-child td { border-bottom: 0; }
+
+    thead th {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      color: #fff;
+      background: var(--navy);
+      font-size: 14px;
+      letter-spacing: 0.01em;
+    }
+
+    tbody tr:nth-child(even) { background: var(--stripe); }
+    tbody tr:hover { background: #e2edf8; }
+
+    .metric { font-weight: 700; }
+    .empty { color: #7b8794; text-align: center; }
+
+    .feedback ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .feedback li + li { margin-top: 5px; }
+
+    .notes {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    @media (max-width: 760px) {
+      body { padding: 12px; }
+      main { padding: 18px; border-radius: 6px; }
+      th, td { padding: 10px; }
+    }
+
+    @media print {
+      @page { size: landscape; margin: 0.35in; }
+      body { padding: 0; background: #fff; }
+      main { max-width: none; padding: 0; border: 0; box-shadow: none; }
+      .table-wrap { overflow: visible; }
+      table { min-width: 0; font-size: 9pt; }
+      thead { display: table-header-group; }
+      tr { break-inside: avoid; }
+      tbody tr:hover { background: inherit; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Avetta McKinsey Framework Metrics Tracker</h1>
+    <p class="intro">
+      Engineering metrics, supporting reports, and Avetta review feedback.
+      <a href="https://getdx.slack.com/docs/T01J7AJJ5F1/F0C6J6D32PJ">Open the source Slack Canvas</a>.
+    </p>
+
+    <div class="table-wrap">
+      <table aria-label="Avetta McKinsey Framework Metrics Tracker">
+        <colgroup>
+          <col style="width: 14%">
+          <col style="width: 17%">
+          <col style="width: 14%">
+          <col style="width: 29%">
+          <col style="width: 26%">
+        </colgroup>
+        <thead>
+          <tr>
+            <th scope="col">Metric</th>
+            <th scope="col">Report link</th>
+            <th scope="col">Data Source</th>
+            <th scope="col">Metrics Definition</th>
+            <th scope="col">Avetta Review Feedback</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="metric" rowspan="4">Cycle Time</td>
+            <td><a href="https://app.getdx.com/report/issue-cycle-time?period=l3m">Issue Cycle Time</a></td>
+            <td rowspan="3">Jira</td>
+            <td>Includes all statuses in the <code>done</code> status category that set the <code>completed_at</code> timestamp.</td>
+            <td class="empty">—</td>
+          </tr>
+          <tr>
+            <td><a href="https://app.getdx.com/report/cycle-time-jira?period=l3m">Jira Cycle Time Explorer</a></td>
+            <td>Statuses are configurable to exclude <code>Will Not Implement</code> or measure time from issue creation to that status.</td>
+            <td>Reviewed with Merlin team; applicable metric.</td>
+          </tr>
+          <tr>
+            <td><a href="https://app.getdx.com/report/time-in-status?jira_statuses=Backlog%2CBlocked%2CIn+Progress%2CIn+Review%2CNeeds+Info%2COn+Hold%2CQA+Testing%2CReopened%2CTo+Do%2COpen&amp;period=l3m">Time in Status</a></td>
+            <td>Measures the total time issues spend in selected Jira statuses to identify bottlenecks and reduce issue cycle time.</td>
+            <td>Reviewed with Merlin team; applicable metric.</td>
+          </tr>
+          <tr>
+            <td><a href="https://app.getdx.com/report/pr-cycle-time?period=l3m">PR Cycle Time</a></td>
+            <td>GitHub</td>
+            <td>Elapsed time between a pull request being opened and merged.</td>
+            <td>Reviewed with Merlin team; applicable metric.</td>
+          </tr>
+          <tr>
+            <td class="metric">Lead Time for Change</td>
+            <td><a href="https://app.getdx.com/report/first-pr-commit-to-deploy-by-service?period=l3m">First Commit to Deploy</a></td>
+            <td>GitHub commits + ArgoCD API</td>
+            <td>Time between creation of the first associated PR commit and deployment to production. Deployments are attributed to teams through service ownership.</td>
+            <td class="feedback">
+              <ul>
+                <li>Merlin team cleaned up its deployment data.</li>
+                <li>Deployment ownership needs to be cleaned up in the <a href="https://app.getdx.com/catalog">DX catalog</a>.</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td class="metric">Issue Lead Time</td>
+            <td><a href="https://app.getdx.com/report/MjQxMTg">End-to-end Delivery Cycle Time Metrics</a></td>
+            <td>Aha! + Jira</td>
+            <td><strong>Lead Time:</strong> idea creation to idea completion, owned by Product.<br><br><strong>Cycle Time:</strong> specification finalization and development, Zone 0 through Zone 4.</td>
+            <td class="feedback">
+              <ul>
+                <li>End-to-end does not apply to Merlin.</li>
+                <li>Awaiting feedback from the Avetta team.</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td class="metric" rowspan="2">Throughput</td>
+            <td><a href="https://app.getdx.com/report/pr-throughput?metric=unweighted&amp;period=l6m&amp;compare_to=prev_period&amp;aggregation=attribute_MjM4NDI">PR Throughput</a></td>
+            <td rowspan="2">GitHub</td>
+            <td>Number of merged pull requests relative to the number of contributing engineers over a specified period.</td>
+            <td class="empty">—</td>
+          </tr>
+          <tr>
+            <td><a href="https://app.getdx.com/report/pr-throughput?metric=weighted&amp;period=l6m&amp;compare_to=prev_period&amp;aggregation=attribute_MjM4NDI">True Throughput</a></td>
+            <td>AI-powered metric that accounts for PR complexity and size. Rather than only counting PRs, it estimates the amount of work shipped per engineer.</td>
+            <td class="feedback">
+              Additional documentation shared with Avetta:
+              <ul>
+                <li><a href="https://dx-knowledge-base.help.usepylon.com/articles/9532023871-understanding-truethroughput-how-pr-weights-are-calculated?lang=en">How PR Weights Are Calculated</a></li>
+                <li><a href="https://dx-knowledge-base.help.usepylon.com/articles/3819402793-understanding-pr-throughput-and-truethroughput-calculation-filters-and-common-discrepancies?lang=en">Calculation, Filters, and Common Discrepancies</a></li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td class="metric">Production Defect %</td>
+            <td><a href="https://app.getdx.com/report/defect-ratio?period=l3m&amp;aggregation=attribute_MjM4NDI">Defect Ratio</a></td>
+            <td>GitHub</td>
+            <td>Percentage of PRs allocated to bug fixes. Bot-authored PRs are omitted; PRs are weighted and classified by DX AI.</td>
+            <td>Pending Avetta feedback.</td>
+          </tr>
+          <tr>
+            <td class="metric">Change Failure Rate</td>
+            <td><a href="https://app.getdx.com/report/cfr?period=l3m&amp;priorities=P1-Critical%2CP2-Urgent">DORA – Change Fail Percentage</a></td>
+            <td>JSM + ArgoCD API</td>
+            <td>Number of incidents divided by the number of deployments.</td>
+            <td class="feedback">
+              <ul>
+                <li>Deployment and incident data pending cleanup.</li>
+                <li>Deployment ownership needs to be cleaned up in the <a href="https://app.getdx.com/catalog">DX catalog</a>.</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td class="metric">MTTR</td>
+            <td><a href="https://app.getdx.com/report/time-to-recover?period=l3m">DORA – Time to Recover</a></td>
+            <td>JSM</td>
+            <td>Duration from incident initiation through resolution.</td>
+            <td>Incident data pending cleanup.</td>
+          </tr>
+          <tr>
+            <td class="metric" rowspan="2">AI-completed Work Share</td>
+            <td><a href="https://app.getdx.com/report/ai-code-percentage?period=l3m">AI Code Percentage</a></td>
+            <td rowspan="4">Daemon + GitHub commits</td>
+            <td>Shows where supported agents contributed code and validates attribution on individual commits.</td>
+            <td><a href="https://docs.getdx.com/reports/ai-code-percentage/">AI Code Percentage help document</a><br>Pending Avetta feedback.</td>
+          </tr>
+          <tr>
+            <td><a href="https://app.getdx.com/report/ai-code-overview?period=l3m&amp;ai_pct_bands=none%2Cheavy">AI Pull Request Overview</a></td>
+            <td>PR cycle time, size, review activity, revert rate, and allocation grouped by each PR’s AI-code percentage.</td>
+            <td><a href="https://docs.getdx.com/reports/ai-code-overview/">AI Pull Request Overview help document</a><br>Pending Avetta feedback.</td>
+          </tr>
+          <tr>
+            <td class="metric" rowspan="2">AI Fluency</td>
+            <td><a href="https://app.getdx.com/report/agent-experience?period=l3m">Agent Experience Score</a></td>
+            <td>Session-level insight into agent friction, including unclear requirements, steering, and scope drift.</td>
+            <td><a href="https://docs.getdx.com/reports/agent-experience-score/">Agent Experience help document</a><br>Pending Avetta feedback.</td>
+          </tr>
+          <tr>
+            <td><a href="https://app.getdx.com/report/ai-effectiveness?period=l3m">AI Effectiveness Report</a></td>
+            <td>Investigates agent work-type breakdowns, agent experience and friction, and work-type model fit in one report.</td>
+            <td><a href="https://docs.getdx.com/reports/ai-effectiveness/">AI Effectiveness help document</a><br>Pending Avetta feedback.</td>
+          </tr>
+          <tr>
+            <td class="metric">Unit Cost / Workflow</td>
+            <td><a href="https://app.getdx.com/report/ai-cost-management?period=l3m&amp;aggregation=contributor&amp;pr_metric=tt">AI Cost Management</a></td>
+            <td>Claude Code OTel for cost data</td>
+            <td>Tracks organizational AI token and budget use, including average cost per PR and completed issue.</td>
+            <td>Workflow definition pending.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </main>
+</body>
+</html>
